@@ -39,10 +39,10 @@ leaf-disease-cv/
 │   └── .gitkeep
 │
 ├── notebooks/
-│   └── 01_leaf_disease_starter_notebook.ipynb
+│   └── 01_leaf_disease_starter_notebook.ipynb(need to be created)
 │
 ├── screenshots/
-│   └── gpu_cpu_verification.png
+│   └── Screenshot.png
 │
 ├── src/
 │   └── verify_environment.py
@@ -123,7 +123,7 @@ For PowerShell:
 ### 3. Install dependencies
 
 ```bash
-python -m pip install torch torchvision Pillow matplotlib
+python -m pip install torch torchvision Pillow matplotlib scikit-learn tqdm
 ```
 
 ### 4. Save installed libraries
@@ -181,7 +181,7 @@ The `+cpu` in the PyTorch and Torchvision versions also confirms that the CPU bu
 The verification screenshot is saved inside:
 
 ```bash
-screenshots/gpu_cpu_verification.png
+screenshots/Screenshot.png
 ```
 
 ---
