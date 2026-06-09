@@ -39,10 +39,10 @@ leaf-disease-cv/
 │   └── .gitkeep
 │
 ├── notebooks/
-│   └── 01_leaf_disease_starter_notebook.ipynb(need to be created)
+│   └── 01_leaf_disease_starter_notebook.ipynb
 │
 ├── screenshots/
-│   └── Screenshot.png
+│   └── gpu_cpu_verification.png
 │
 ├── src/
 │   └── verify_environment.py
@@ -123,7 +123,7 @@ For PowerShell:
 ### 3. Install dependencies
 
 ```bash
-python -m pip install torch torchvision Pillow matplotlib scikit-learn tqdm
+python -m pip install torch torchvision Pillow matplotlib
 ```
 
 ### 4. Save installed libraries
@@ -181,7 +181,7 @@ The `+cpu` in the PyTorch and Torchvision versions also confirms that the CPU bu
 The verification screenshot is saved inside:
 
 ```bash
-screenshots/Screenshot.png
+screenshots/gpu_cpu_verification.png
 ```
 
 ---
@@ -219,3 +219,50 @@ This is only the initial setup stage. In the next steps, the project can be impr
 ## Task Completion
 
 This task helped me understand how to set up a PyTorch-based computer vision project from scratch and verify whether the environment is using CPU or GPU.
+
+Task 2: Custom Dataset and DataLoader
+
+The dataset was organized using ImageFolder-style class folders. Each class has a separate folder inside the train and validation directories.
+
+Dataset structure:
+
+data/
+├── train/
+│   ├── Chili___healthy/
+│   ├── Chili___leaf_curl/
+│   ├── Tomato___Late_blight/
+│   └── Tomato___healthy/
+│
+└── val/
+    ├── Chili___healthy/
+    ├── Chili___leaf_curl/
+    ├── Tomato___Late_blight/
+    └── Tomato___healthy/
+
+A custom PyTorch Dataset class named LeafDiseaseDataset was implemented in src/dataset.py. It reads image paths from class folders, converts images to RGB, applies resizing and tensor transformation, and returns each image with its numeric label.
+
+Train and validation DataLoaders were created with a batch size of 16. The train loader uses shuffle=True, while the validation loader uses shuffle=False.
+
+Batch shape verification:
+
+Batch image shape: torch.Size([16, 3, 224, 224])
+Batch label shape: torch.Size([16])
+
+This confirms the required PyTorch image format:
+N = batch size
+3 = RGB channels
+H = image height
+W = image width
+
+Class imbalance summary:
+
+Chili___healthy: 80 images
+Chili___leaf_curl: 80 images
+Tomato___Late_blight: 200 images
+Tomato___healthy: 200 images
+
+The dataset is slightly imbalanced because the tomato classes have more images than the chilli classes. This can be handled later using data augmentation, class weights, or balanced sampling during model training.
+
+Output generated:
+
+outputs/sample_batch.png
