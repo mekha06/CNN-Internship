@@ -196,3 +196,26 @@ Easy Memory Trick
 PyTorch = Build and Train AI Models
 
 TorchVision = Handle Images for PyTorch
+
+## TASK-2
+An image tensor is the numerical form of an image that PyTorch can understand.A computer/model cannot directly understand the picture visually. So the image is converted into numbers.Each pixel has color values.For an RGB image, each pixel has 3 values:
+Red value
+Green value
+Blue value
+Example:Pixel = [120, 200, 80]
+So the whole image becomes a big collection of numbers.That collection of numbers is called a tensor.
+
+Suppose your image is resized to:224 x 224 and it is an RGB image.Then PyTorch represents one image as:[3, 224, 224]
+3   = color channels: Red, Green, Blue
+224 = height
+224 = width
+When DataLoader loads multiple images together, it creates a batch.
+If batch size is 16:torch.Size([16, 3, 224, 224])
+16  = number of images
+3   = RGB channels
+224 = height
+224 = width
+
+Why do we convert image to tensor?
+Because a CNN model can only learn from numbers.
+
