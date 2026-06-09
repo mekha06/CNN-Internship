@@ -220,12 +220,19 @@ This is only the initial setup stage. In the next steps, the project can be impr
 
 This task helped me understand how to set up a PyTorch-based computer vision project from scratch and verify whether the environment is using CPU or GPU.
 
-Task 2: Custom Dataset and DataLoader
+## Task 2: Custom Dataset and DataLoader
 
-The dataset was organized using ImageFolder-style class folders. Each class has a separate folder inside the train and validation directories.
+### Objective
 
-Dataset structure:
+The objective of this task was to implement a custom PyTorch Dataset class named `LeafDiseaseDataset` and create train/validation DataLoaders for tomato and chilli leaf disease image classification.
 
+---
+
+### Dataset Organization
+
+The dataset was organized using an ImageFolder-style directory structure. Each class has a separate folder inside the `train` and `val` directories.
+
+```text
 data/
 ├── train/
 │   ├── Chili___healthy/
@@ -238,31 +245,136 @@ data/
     ├── Chili___leaf_curl/
     ├── Tomato___Late_blight/
     └── Tomato___healthy/
+```
 
-A custom PyTorch Dataset class named LeafDiseaseDataset was implemented in src/dataset.py. It reads image paths from class folders, converts images to RGB, applies resizing and tensor transformation, and returns each image with its numeric label.
+In this structure, each folder name represents a class label.
 
-Train and validation DataLoaders were created with a batch size of 16. The train loader uses shuffle=True, while the validation loader uses shuffle=False.
+---
 
-Batch shape verification:
+### Dataset Preparation
 
+The tomato dataset was originally not split into training and validation folders. Therefore, a `split_dataset.py` script was created to split the selected tomato classes into `train` and `val` directories.
+
+The chilli dataset was already split, so the required chilli classes were copied into the project dataset structure manually.
+
+Final classes used:
+
+```text
+Chili___healthy
+Chili___leaf_curl
+Tomato___Late_blight
+Tomato___healthy
+```
+
+---
+
+### Custom Dataset Implementation
+
+A custom PyTorch Dataset class named `LeafDiseaseDataset` was implemented in:
+
+```text
+src/dataset.py
+```
+
+The dataset class performs the following tasks:
+
+```text
+- Scans class folders
+- Stores image paths
+- Assigns numeric labels to each class
+- Opens images using PIL
+- Converts images to RGB format
+- Resizes images to 224x224
+- Converts images into PyTorch tensors
+- Returns each image tensor with its corresponding label
+```
+
+---
+
+### DataLoader Implementation
+
+Train and validation DataLoaders were created using `torch.utils.data.DataLoader`.
+
+Configuration used:
+
+```text
+Batch size: 16
+Train shuffle: True
+Validation shuffle: False
+num_workers: 0
+```
+
+`num_workers=0` was used for better compatibility on Windows.
+
+---
+
+### Batch Shape Verification
+
+The DataLoader was tested using:
+
+```text
+dataloader_test.py
+```
+
+A sample batch was loaded from the training DataLoader.
+
+Output:
+
+```text
 Batch image shape: torch.Size([16, 3, 224, 224])
 Batch label shape: torch.Size([16])
+```
 
 This confirms the required PyTorch image format:
+
+```text
 N = batch size
 3 = RGB channels
 H = image height
 W = image width
+```
 
-Class imbalance summary:
+So the final image batch format is:
 
+```text
+(N, 3, H, W)
+```
+
+---
+
+### Class Imbalance Summary
+
+Training image count:
+
+```text
 Chili___healthy: 80 images
 Chili___leaf_curl: 80 images
 Tomato___Late_blight: 200 images
 Tomato___healthy: 200 images
+```
 
-The dataset is slightly imbalanced because the tomato classes have more images than the chilli classes. This can be handled later using data augmentation, class weights, or balanced sampling during model training.
+The dataset is slightly imbalanced because the tomato classes contain more images than the chilli classes. This can be handled later during model training using data augmentation, class weights, or balanced sampling.
 
-Output generated:
+---
 
+### Output Generated
+
+A sample batch visualization was generated and saved as:
+
+```text
 outputs/sample_batch.png
+```
+
+This image confirms that the DataLoader can successfully load and display images from the dataset.
+
+---
+
+### Files Added for Task 2
+
+```text
+src/dataset.py
+dataloader_test.py
+split_dataset.py
+outputs/sample_batch.png
+README.md
+```
