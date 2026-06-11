@@ -33,7 +33,7 @@ print("Batch label shape:", labels.shape)
 
 os.makedirs("outputs", exist_ok=True)
 
-fig, axes = plt.subplots(2, 4, figsize=(12, 6))
+fig, axes = plt.subplots(4, 4, figsize=(12, 6))
 
 for i, ax in enumerate(axes.flat):
     image = images[i].permute(1, 2, 0)
