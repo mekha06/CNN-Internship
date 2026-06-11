@@ -1,10 +1,8 @@
 import os
 from collections import Counter
 from PIL import Image
-
 from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms
-
 
 class LeafDiseaseDataset(Dataset):
     def __init__(self, root_dir, transform=None):
@@ -19,6 +17,8 @@ class LeafDiseaseDataset(Dataset):
         self.class_to_idx = {
             class_name: index for index, class_name in enumerate(self.classes)
         }
+
+        
 
         self.image_paths = []
         self.labels = []
