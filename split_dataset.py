@@ -13,7 +13,8 @@ destination_root = r"D:\cnn-internship\leaf-disease-cv\data"
 # Tomato classes you want to use
 classes = [
     "Tomato___Late_blight",
-    "Tomato___healthy"
+    "Tomato___healthy" ,
+    "Tomato___Bacterial_spot"
 ]
 
 # Number of images per class
