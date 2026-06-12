@@ -96,7 +96,7 @@ print("Saved feature map visualization to outputs/conv1_feature_maps.png")
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 
-num_epochs = 8
+num_epochs = 5
 train_losses = []
 val_accuracies = []
 
