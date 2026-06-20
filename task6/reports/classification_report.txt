@@ -1,0 +1,12 @@
+                         precision    recall  f1-score   support
+
+        Chili___healthy       0.00      0.00      0.00        10
+      Chili___leaf_curl       0.25      0.10      0.14        10
+      Chilli__leaf_spot       0.50      0.20      0.29        10
+Tomato___Bacterial_spot       0.00      0.00      0.00        50
+   Tomato___Late_blight       0.48      0.66      0.55        50
+       Tomato___healthy       0.30      0.60      0.40        50
+
+               accuracy                           0.37       180
+              macro avg       0.25      0.26      0.23       180
+           weighted avg       0.26      0.37      0.29       180
