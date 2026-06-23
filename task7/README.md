@@ -119,7 +119,8 @@ The model successfully:
 
 ---
 
-# The model is biased towards chilli daatset and perfroms badly on tomato , need to make imrovements to make the model strong and accurate.Gonna work on that!!
+# 
+The model is biased towards chilli dataset and performs badly on tomato , need to make improvements to make the model strong and accurate. Gonna work on that!!
 
 ## Conclusion
 
