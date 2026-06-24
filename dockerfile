@@ -1,10 +1,16 @@
-FROM python:3.11-slim
+FROM python:3.11
 
 WORKDIR /app
 
-COPY requirements.txt .
+COPY requirements-deploy.txt .
 
-RUN pip install --default-timeout=1000 --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip
+
+RUN pip install \
+    --index-url https://download.pytorch.org/whl/cpu \
+    torch==2.5.1 torchvision==0.20.1
+
+RUN pip install --no-cache-dir -r requirements-deploy.txt
 
 COPY . .
 
